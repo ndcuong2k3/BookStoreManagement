@@ -86,5 +86,37 @@ namespace BookStoreManagement
                 throw new Exception("Lỗi khi thực thi câu lệnh lấy giá trị: " + ex.Message);
             }
         }
+
+        // Đổ dữ liệu vào ComboBox
+        public void FillComboBox(ComboBox comboBox, string sql, string displayMember, string valueMember, SqlParameter[]? parameters = null)
+        {
+            try
+            {
+                DataTable dt = ExecuteQuery(sql, parameters);
+
+                comboBox.DataSource = dt;
+                comboBox.DisplayMember = displayMember;
+                comboBox.ValueMember = valueMember;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi đổ dữ liệu vào ComboBox: " + ex.Message);
+            }
+        }
+
+        // Đổ dữ liệu vào DataGridView
+        public void FillDataGridView(DataGridView dgv, DataTable dt)
+        {
+            try
+            {
+                dgv.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi đổ dữ liệu vào DataGridView: " + ex.Message);
+            }
+        }
+
+
     }
 }
