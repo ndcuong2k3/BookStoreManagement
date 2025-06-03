@@ -41,6 +41,21 @@ namespace BookStoreManagement
             return dt;
         }
 
+        //Lấy dữ liệu từ bảng
+        public DataTable GetTable(string tableName) {
+            string sql = "Select * from " + tableName;
+            using (var connection = GetConnection())
+            {
+                using(var command = new SqlCommand(sql,connection))
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter(sql,connection);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    return dt;
+                }
+            }
+        } 
+
         // Thực thi câu lệnh INSERT/UPDATE/DELETE trả về số bản ghi ảnh hưởng
         public int ExecuteNonQuery(string sql, SqlParameter[]? parameters = null, CommandType commandType = CommandType.Text)
         {
