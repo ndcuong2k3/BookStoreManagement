@@ -7,7 +7,7 @@ namespace BookStoreManagement
 {
     public class DBHelper
     {
-        private readonly string connectionString = "Server=CUONG\\MSSQLSERVER01;Database=BTH3;User Id=sa;Password=cuong;TrustServerCertificate=True;";
+        private readonly string connectionString = "Server=CUONG\\MSSQLSERVER01;Database=BookStoreManagement;User Id=sa;Password=cuong;TrustServerCertificate=True;";
 
         private SqlConnection GetConnection()
         {
