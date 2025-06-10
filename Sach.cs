@@ -127,17 +127,6 @@ namespace BookStoreManagement
             txtTheloai.Text = string.Empty;
         }
 
-        private void btnTimkiem_Click(object sender, EventArgs e)
-        {
-            var parameters = new SqlParameter[]
-            {
-                new SqlParameter("@TuKhoa",txtTimkiem.Text)
-            };
-            DataTable dt = new DataTable();
-            dt = dBHelper.ExecuteQuery("TimKiemSachTheoTen", parameters, CommandType.StoredProcedure);
-            dBHelper.FillDataGridView(dgdSach, dt);
-        }
-
         //private void dgdSach_RowValidated(object sender, DataGridViewCellEventArgs e)
         //{
         //    if (dgdSach.Rows[e.RowIndex].IsNewRow) return;
