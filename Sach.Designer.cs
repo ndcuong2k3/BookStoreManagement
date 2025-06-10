@@ -219,15 +219,15 @@
             dgdSach.Location = new Point(356, 67);
             dgdSach.Name = "dgdSach";
             dgdSach.RowHeadersWidth = 51;
-            dgdSach.Size = new Size(432, 323);
+            dgdSach.Size = new Size(696, 323);
             dgdSach.TabIndex = 1;
             dgdSach.CellClick += dgdSach_CellClick;
             // 
             // txtTimkiem
             // 
-            txtTimkiem.Location = new Point(356, 33);
+            txtTimkiem.Location = new Point(356, 34);
             txtTimkiem.Name = "txtTimkiem";
-            txtTimkiem.Size = new Size(322, 27);
+            txtTimkiem.Size = new Size(582, 27);
             txtTimkiem.TabIndex = 17;
             // 
             // btnThem
@@ -262,9 +262,9 @@
             // 
             // btnLammoi
             // 
-            btnLammoi.Location = new Point(23, 396);
+            btnLammoi.Location = new Point(12, 396);
             btnLammoi.Name = "btnLammoi";
-            btnLammoi.Size = new Size(315, 29);
+            btnLammoi.Size = new Size(326, 29);
             btnLammoi.TabIndex = 21;
             btnLammoi.Text = "Làm mới";
             btnLammoi.UseVisualStyleBackColor = true;
@@ -272,7 +272,7 @@
             // 
             // btnTimkiem
             // 
-            btnTimkiem.Location = new Point(694, 33);
+            btnTimkiem.Location = new Point(958, 32);
             btnTimkiem.Name = "btnTimkiem";
             btnTimkiem.Size = new Size(94, 29);
             btnTimkiem.TabIndex = 22;
@@ -282,16 +282,17 @@
             // 
             // button6
             // 
-            button6.Location = new Point(645, 396);
+            button6.Location = new Point(909, 396);
             button6.Name = "button6";
             button6.Size = new Size(143, 29);
             button6.TabIndex = 23;
             button6.Text = "Về Trang chủ";
             button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
             // 
             // btnLuu
             // 
-            btnLuu.Location = new Point(356, 396);
+            btnLuu.Location = new Point(760, 396);
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(143, 29);
             btnLuu.TabIndex = 24;
@@ -303,7 +304,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1082, 453);
             Controls.Add(btnLuu);
             Controls.Add(button6);
             Controls.Add(btnTimkiem);

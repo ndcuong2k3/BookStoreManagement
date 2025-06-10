@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Data;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BookStoreManagement
 {
@@ -40,6 +41,22 @@ namespace BookStoreManagement
 
         private void btnThem_Click(object sender, EventArgs e)
         {
+            if (!ValidateInput(out string error))
+            {
+                MessageBox.Show(error, "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            string sql = "Select sMasach from tblSach where sMasach = @MaSach";
+            var parameter = new SqlParameter[]
+            {
+                    new SqlParameter("@MaSach",txtMasach.Text )
+            };
+            var ob = dBHelper.ExecuteScalar(sql, parameter);
+            if (ob != null)
+            {
+                MessageBox.Show("Đã tồn tại sách có mã vừa nhập", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             var parameters = new SqlParameter[]
             {
                 new SqlParameter("@sMasach",txtMasach.Text),
@@ -52,8 +69,10 @@ namespace BookStoreManagement
                 new SqlParameter("@iNamXB",Convert.ToInt32(txtNamxuatban.Text)),
             };
             dBHelper.ExecuteNonQuery("ThemSach", parameters, CommandType.StoredProcedure);
+            MessageBox.Show("Thêm sách thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             LoadData();
         }
+
 
         private void btnSua_Click(object sender, EventArgs e)
         {
@@ -69,18 +88,26 @@ namespace BookStoreManagement
                 new SqlParameter("@iNamXB",Convert.ToInt32(txtNamxuatban.Text)),
             };
             dBHelper.ExecuteNonQuery("SuaSach", parameters, CommandType.StoredProcedure);
+            MessageBox.Show("Cập nhật sách thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             LoadData();
+            ClearInput();
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            var parameters = new SqlParameter[]
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
             {
-                new SqlParameter("@sMasach",txtMasach.Text)
-            };
-            dBHelper.ExecuteNonQuery("XoaSach", parameters, CommandType.StoredProcedure);
-            LoadData();
-            ClearInput();
+                var parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@sMasach",txtMasach.Text)
+                };
+                dBHelper.ExecuteNonQuery("XoaSach", parameters, CommandType.StoredProcedure);
+                MessageBox.Show("Xóa sách thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadData();
+                ClearInput();
+            }
+
         }
 
         private void btnLammoi_Click(object sender, EventArgs e)
@@ -184,26 +211,25 @@ namespace BookStoreManagement
                 string tenNXB = row.Cells["Nhà xuất bản"].Value?.ToString() ?? "";
 
                 // Chuyển đổi số an toàn
-                bool isSoLuongValid = int.TryParse(row.Cells["Số lượng"].Value?.ToString(), out int soluong);
-                bool isGiaValid = int.TryParse(row.Cells["Giá"].Value?.ToString(), out int gia);
-                bool isNamXBValid = int.TryParse(row.Cells["Năm xuất bản"].Value?.ToString(), out int namxb);
-
-                if (!isSoLuongValid || !isGiaValid || !isNamXBValid)
-                {
-                    MessageBox.Show("Dữ liệu số không hợp lệ ở dòng chứa mã sách: " + masach);
-                    continue;
-                }
+                int.TryParse(row.Cells["Số lượng"].Value?.ToString(), out int soluong);
+                int.TryParse(row.Cells["Giá"].Value?.ToString(), out int gia);
+                int.TryParse(row.Cells["Năm xuất bản"].Value?.ToString(), out int namxb);
 
                 // Lấy mã NXB từ tên NXB
                 string sql = "SELECT sMaNXB FROM tblNXB WHERE sTenNXB = @TenNXB";
                 SqlParameter[] parameters = {
                     new SqlParameter("@TenNXB", tenNXB)
                 };
+                if (string.IsNullOrEmpty(tenNXB))
+                {
+                    MessageBox.Show("Vui lòng nhập tên nhà xuất bản", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
                 object result = dBHelper.ExecuteScalar(sql, parameters);
                 if (result == null)
                 {
-                    MessageBox.Show($"Không tìm thấy Nhà xuất bản: {tenNXB} cho sách: {masach}");
+                    MessageBox.Show($"Không tìm thấy Nhà xuất bản: {tenNXB}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     continue;
                 }
 
@@ -223,17 +249,83 @@ namespace BookStoreManagement
 
                 if (CheckIfBookExists(masach))
                 {
-                    dBHelper.ExecuteNonQuery("SuaSach", parameter, CommandType.StoredProcedure);
+                    if (IsRowModified(masach, tensach, theloai, tacgia, maNXB, gia, soluong, namxb))
+                    {
+                        var count = dBHelper.ExecuteNonQuery("SuaSach", parameter, CommandType.StoredProcedure);
+                        if (count != 0)
+                        {
+                            MessageBox.Show("Đã lưu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
                 }
                 else
                 {
-                    dBHelper.ExecuteNonQuery("ThemSach", parameter, CommandType.StoredProcedure);
+                    if (!ValidateInput(out string errorMessage))
+                    {
+                        MessageBox.Show(errorMessage, "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    else
+                    {
+                        dBHelper.ExecuteNonQuery("ThemSach", parameter, CommandType.StoredProcedure);
+                        MessageBox.Show("Đã lưu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
-            }
 
-            MessageBox.Show("Đã lưu thành công!");
-            LoadData(); // Nếu có hàm load lại dữ liệu
+            }
+            LoadData();
         }
 
+        private bool IsRowModified(string masach, string tensach, string theloai, string tacgia, string maNXB, int gia, int soluong, int namxb)
+        {
+            string query = "SELECT sTensach, sTheloai, sTacgia, sMaNXB, iGia, iSL, iNamXB FROM tblSach WHERE sMasach = @Masach";
+            SqlParameter[] parameters = {
+                new SqlParameter("@Masach", masach)
+            };
+
+            DataTable dt = dBHelper.ExecuteQuery(query, parameters);
+            if (dt.Rows.Count == 0) return false; // Không có sách trong DB => không so sánh
+
+            DataRow dbRow = dt.Rows[0];
+
+            // So sánh từng trường
+            return
+                dbRow["sTensach"].ToString() != tensach ||
+                dbRow["sTheloai"].ToString() != theloai ||
+                dbRow["sTacgia"].ToString() != tacgia ||
+                dbRow["sMaNXB"].ToString() != maNXB ||
+                Convert.ToInt32(dbRow["iGia"]) != gia ||
+                Convert.ToInt32(dbRow["iSL"]) != soluong ||
+                Convert.ToInt32(dbRow["iNamXB"]) != namxb;
+        }
+
+
+        private bool ValidateInput(out string errorMessage)
+        {
+            errorMessage = "";
+
+            // Kiểm tra các trường bắt buộc
+            if (string.IsNullOrWhiteSpace(txtMasach.Text))
+                errorMessage = "Vui lòng nhập Mã sách.";
+            else if (string.IsNullOrWhiteSpace(txtTensach.Text))
+                errorMessage = "Vui lòng nhập Tên sách.";
+            else if (string.IsNullOrWhiteSpace(txtGia.Text) || !int.TryParse(txtGia.Text, out _))
+                errorMessage = "Giá phải là số nguyên hợp lệ.";
+            else if (string.IsNullOrWhiteSpace(txtSoluong.Text) || !int.TryParse(txtSoluong.Text, out _))
+                errorMessage = "Số lượng phải là số nguyên hợp lệ.";
+            else if (string.IsNullOrWhiteSpace(txtNamxuatban.Text) || !int.TryParse(txtNamxuatban.Text, out int namxb) || namxb < 1900 || namxb > DateTime.Now.Year)
+                errorMessage = "Năm xuất bản phải là số hợp lệ từ 1900 đến hiện tại.";
+            else if (string.IsNullOrWhiteSpace(txtTacgia.Text))
+                errorMessage = "Vui lòng nhập Tác giả.";
+            else if (cbbNXB.SelectedIndex == -1)
+                errorMessage = "Vui lòng chọn Nhà xuất bản.";
+
+            return string.IsNullOrEmpty(errorMessage);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
