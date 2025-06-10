@@ -1,6 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Data;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BookStoreManagement
 {
@@ -114,6 +113,15 @@ namespace BookStoreManagement
         {
             ClearInput();
             LoadData();
+            cbGia.Checked = false;
+            cbMasach.Checked = false;
+            cbNamXB.Checked = false;
+            cbNXB.Checked = false;
+            cbSoluong.Checked = false;
+            cbTacgia.Checked = false;
+            cbTensach.Checked = false;
+            cbNXB.Checked = false;
+            cbTheLoai.Checked = false;
         }
 
         private void ClearInput()
@@ -326,7 +334,7 @@ namespace BookStoreManagement
                 }
                 else
                 {
-                    MessageBox.Show("Vui lòng nhập mã sách.");
+                    MessageBox.Show("Vui lòng nhập mã sách", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }
@@ -340,7 +348,7 @@ namespace BookStoreManagement
                 }
                 else
                 {
-                    MessageBox.Show("Vui lòng nhập tên tác giả.");
+                    MessageBox.Show("Vui lòng nhập tên tác giả", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }
@@ -354,7 +362,8 @@ namespace BookStoreManagement
                 }
                 else
                 {
-                    MessageBox.Show("Vui lòng nhập tên sách.");
+
+                    MessageBox.Show("Vui lòng nhập tên tên sách", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }
@@ -368,7 +377,7 @@ namespace BookStoreManagement
                 }
                 else
                 {
-                    MessageBox.Show("Vui lòng nhập giá là một số hợp lệ.");
+                    MessageBox.Show("Vui lòng nhập giá là một số hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }
@@ -382,7 +391,7 @@ namespace BookStoreManagement
                 }
                 else
                 {
-                    MessageBox.Show("Vui lòng nhập năm xuất bản là số.");
+                    MessageBox.Show("Vui lòng nhập năm xuất bản là một số hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }
@@ -396,7 +405,7 @@ namespace BookStoreManagement
                 }
                 else
                 {
-                    MessageBox.Show("Vui lòng nhập thể loại.");
+                    MessageBox.Show("Vui lòng nhập tên thể loại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }
@@ -410,7 +419,7 @@ namespace BookStoreManagement
                 }
                 else
                 {
-                    MessageBox.Show("Vui lòng nhập số lượng là số.");
+                    MessageBox.Show("Vui lòng nhập số lượng là số hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }
