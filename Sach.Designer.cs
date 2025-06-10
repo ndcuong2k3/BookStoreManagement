@@ -29,6 +29,14 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            cbNXB = new CheckBox();
+            cbGia = new CheckBox();
+            cbTheLoai = new CheckBox();
+            cbTacgia = new CheckBox();
+            cbNamXB = new CheckBox();
+            cbSoluong = new CheckBox();
+            cbTensach = new CheckBox();
+            cbMasach = new CheckBox();
             cbbNXB = new ComboBox();
             label4 = new Label();
             txtGia = new TextBox();
@@ -52,29 +60,21 @@
             btnLammoi = new Button();
             button6 = new Button();
             btnLuu = new Button();
-            checkBox1 = new CheckBox();
             btnTimkiem = new Button();
-            checkBox2 = new CheckBox();
-            checkBox3 = new CheckBox();
-            checkBox4 = new CheckBox();
-            checkBox5 = new CheckBox();
-            checkBox6 = new CheckBox();
-            checkBox8 = new CheckBox();
-            checkBox9 = new CheckBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgdSach).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(checkBox8);
-            groupBox1.Controls.Add(checkBox9);
-            groupBox1.Controls.Add(checkBox4);
-            groupBox1.Controls.Add(checkBox5);
-            groupBox1.Controls.Add(checkBox6);
-            groupBox1.Controls.Add(checkBox3);
-            groupBox1.Controls.Add(checkBox2);
-            groupBox1.Controls.Add(checkBox1);
+            groupBox1.Controls.Add(cbNXB);
+            groupBox1.Controls.Add(cbGia);
+            groupBox1.Controls.Add(cbTheLoai);
+            groupBox1.Controls.Add(cbTacgia);
+            groupBox1.Controls.Add(cbNamXB);
+            groupBox1.Controls.Add(cbSoluong);
+            groupBox1.Controls.Add(cbTensach);
+            groupBox1.Controls.Add(cbMasach);
             groupBox1.Controls.Add(cbbNXB);
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(txtGia);
@@ -97,6 +97,78 @@
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Thông tin sách";
+            // 
+            // cbNXB
+            // 
+            cbNXB.AutoSize = true;
+            cbNXB.Location = new Point(359, 315);
+            cbNXB.Name = "cbNXB";
+            cbNXB.Size = new Size(18, 17);
+            cbNXB.TabIndex = 23;
+            cbNXB.UseVisualStyleBackColor = true;
+            // 
+            // cbGia
+            // 
+            cbGia.AutoSize = true;
+            cbGia.Location = new Point(359, 276);
+            cbGia.Name = "cbGia";
+            cbGia.Size = new Size(18, 17);
+            cbGia.TabIndex = 22;
+            cbGia.UseVisualStyleBackColor = true;
+            // 
+            // cbTheLoai
+            // 
+            cbTheLoai.AutoSize = true;
+            cbTheLoai.Location = new Point(359, 237);
+            cbTheLoai.Name = "cbTheLoai";
+            cbTheLoai.Size = new Size(18, 17);
+            cbTheLoai.TabIndex = 21;
+            cbTheLoai.UseVisualStyleBackColor = true;
+            // 
+            // cbTacgia
+            // 
+            cbTacgia.AutoSize = true;
+            cbTacgia.Location = new Point(359, 201);
+            cbTacgia.Name = "cbTacgia";
+            cbTacgia.Size = new Size(18, 17);
+            cbTacgia.TabIndex = 20;
+            cbTacgia.UseVisualStyleBackColor = true;
+            // 
+            // cbNamXB
+            // 
+            cbNamXB.AutoSize = true;
+            cbNamXB.Location = new Point(359, 162);
+            cbNamXB.Name = "cbNamXB";
+            cbNamXB.Size = new Size(18, 17);
+            cbNamXB.TabIndex = 19;
+            cbNamXB.UseVisualStyleBackColor = true;
+            // 
+            // cbSoluong
+            // 
+            cbSoluong.AutoSize = true;
+            cbSoluong.Location = new Point(359, 120);
+            cbSoluong.Name = "cbSoluong";
+            cbSoluong.Size = new Size(18, 17);
+            cbSoluong.TabIndex = 18;
+            cbSoluong.UseVisualStyleBackColor = true;
+            // 
+            // cbTensach
+            // 
+            cbTensach.AutoSize = true;
+            cbTensach.Location = new Point(359, 84);
+            cbTensach.Name = "cbTensach";
+            cbTensach.Size = new Size(18, 17);
+            cbTensach.TabIndex = 17;
+            cbTensach.UseVisualStyleBackColor = true;
+            // 
+            // cbMasach
+            // 
+            cbMasach.AutoSize = true;
+            cbMasach.Location = new Point(359, 45);
+            cbMasach.Name = "cbMasach";
+            cbMasach.Size = new Size(18, 17);
+            cbMasach.TabIndex = 16;
+            cbMasach.UseVisualStyleBackColor = true;
             // 
             // cbbNXB
             // 
@@ -286,7 +358,6 @@
             button6.TabIndex = 23;
             button6.Text = "Về Trang chủ";
             button6.UseVisualStyleBackColor = true;
-            button6.Click += button6_Click;
             // 
             // btnLuu
             // 
@@ -298,15 +369,6 @@
             btnLuu.UseVisualStyleBackColor = true;
             btnLuu.Click += btnLuu_Click;
             // 
-            // checkBox1
-            // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(359, 45);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(18, 17);
-            checkBox1.TabIndex = 16;
-            checkBox1.UseVisualStyleBackColor = true;
-            // 
             // btnTimkiem
             // 
             btnTimkiem.Location = new Point(351, 395);
@@ -315,69 +377,7 @@
             btnTimkiem.TabIndex = 25;
             btnTimkiem.Text = "Tìm kiếm";
             btnTimkiem.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            checkBox2.AutoSize = true;
-            checkBox2.Location = new Point(359, 84);
-            checkBox2.Name = "checkBox2";
-            checkBox2.Size = new Size(18, 17);
-            checkBox2.TabIndex = 17;
-            checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            checkBox3.AutoSize = true;
-            checkBox3.Location = new Point(359, 120);
-            checkBox3.Name = "checkBox3";
-            checkBox3.Size = new Size(18, 17);
-            checkBox3.TabIndex = 18;
-            checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            checkBox4.AutoSize = true;
-            checkBox4.Location = new Point(359, 237);
-            checkBox4.Name = "checkBox4";
-            checkBox4.Size = new Size(18, 17);
-            checkBox4.TabIndex = 21;
-            checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // checkBox5
-            // 
-            checkBox5.AutoSize = true;
-            checkBox5.Location = new Point(359, 201);
-            checkBox5.Name = "checkBox5";
-            checkBox5.Size = new Size(18, 17);
-            checkBox5.TabIndex = 20;
-            checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // checkBox6
-            // 
-            checkBox6.AutoSize = true;
-            checkBox6.Location = new Point(359, 162);
-            checkBox6.Name = "checkBox6";
-            checkBox6.Size = new Size(18, 17);
-            checkBox6.TabIndex = 19;
-            checkBox6.UseVisualStyleBackColor = true;
-            // 
-            // checkBox8
-            // 
-            checkBox8.AutoSize = true;
-            checkBox8.Location = new Point(359, 315);
-            checkBox8.Name = "checkBox8";
-            checkBox8.Size = new Size(18, 17);
-            checkBox8.TabIndex = 23;
-            checkBox8.UseVisualStyleBackColor = true;
-            // 
-            // checkBox9
-            // 
-            checkBox9.AutoSize = true;
-            checkBox9.Location = new Point(359, 276);
-            checkBox9.Name = "checkBox9";
-            checkBox9.Size = new Size(18, 17);
-            checkBox9.TabIndex = 22;
-            checkBox9.UseVisualStyleBackColor = true;
+            btnTimkiem.Click += btnTimkiem_Click;
             // 
             // Sach
             // 
@@ -427,14 +427,14 @@
         private Button btnLammoi;
         private Button button6;
         private Button btnLuu;
-        private CheckBox checkBox1;
+        private CheckBox cbMasach;
         private Button btnTimkiem;
-        private CheckBox checkBox8;
-        private CheckBox checkBox9;
-        private CheckBox checkBox4;
-        private CheckBox checkBox5;
-        private CheckBox checkBox6;
-        private CheckBox checkBox3;
-        private CheckBox checkBox2;
+        private CheckBox cbNXB;
+        private CheckBox cbGia;
+        private CheckBox cbTheLoai;
+        private CheckBox cbTacgia;
+        private CheckBox cbNamXB;
+        private CheckBox cbSoluong;
+        private CheckBox cbTensach;
     }
 }

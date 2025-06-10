@@ -312,9 +312,118 @@ namespace BookStoreManagement
             return string.IsNullOrEmpty(errorMessage);
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void btnTimkiem_Click(object sender, EventArgs e)
         {
+            string sql = "SELECT * FROM vvSach WHERE 1 = 1";
+            List<SqlParameter> parameters = new List<SqlParameter>();
 
+            if (cbMasach.Checked)
+            {
+                if (!string.IsNullOrWhiteSpace(txtMasach.Text))
+                {
+                    sql += " AND [Mã sách] = @Masach";
+                    parameters.Add(new SqlParameter("@Masach", txtMasach.Text));
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng nhập mã sách.");
+                    return;
+                }
+            }
+
+            if (cbTacgia.Checked)
+            {
+                if (!string.IsNullOrWhiteSpace(txtTacgia.Text))
+                {
+                    sql += " AND [Tác giả] LIKE @Tacgia";
+                    parameters.Add(new SqlParameter("@Tacgia", "%" + txtTacgia.Text + "%"));
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng nhập tên tác giả.");
+                    return;
+                }
+            }
+
+            if (cbTensach.Checked)
+            {
+                if (!string.IsNullOrWhiteSpace(txtTensach.Text))
+                {
+                    sql += " AND [Tên sách] LIKE @Tensach";
+                    parameters.Add(new SqlParameter("@Tensach", "%" + txtTensach.Text + "%"));
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng nhập tên sách.");
+                    return;
+                }
+            }
+
+            if (cbGia.Checked)
+            {
+                if (!string.IsNullOrWhiteSpace(txtGia.Text) && int.TryParse(txtGia.Text, out int gia))
+                {
+                    sql += " AND [Giá] = @Gia";
+                    parameters.Add(new SqlParameter("@Gia", gia));
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng nhập giá là một số hợp lệ.");
+                    return;
+                }
+            }
+
+            if (cbNamXB.Checked)
+            {
+                if (!string.IsNullOrWhiteSpace(txtNamxuatban.Text) && int.TryParse(txtNamxuatban.Text, out int namXB))
+                {
+                    sql += " AND [Năm xuất bản] = @NamXB";
+                    parameters.Add(new SqlParameter("@NamXB", namXB));
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng nhập năm xuất bản là số.");
+                    return;
+                }
+            }
+
+            if (cbTheLoai.Checked)
+            {
+                if (!string.IsNullOrWhiteSpace(txtTheloai.Text))
+                {
+                    sql += " AND [Thể loại] = @Theloai";
+                    parameters.Add(new SqlParameter("@Theloai", txtTheloai.Text));
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng nhập thể loại.");
+                    return;
+                }
+            }
+
+            if (cbSoluong.Checked)
+            {
+                if (!string.IsNullOrWhiteSpace(txtSoluong.Text) && int.TryParse(txtSoluong.Text, out int soluong))
+                {
+                    sql += " AND [Số lượng] = @Soluong";
+                    parameters.Add(new SqlParameter("@Soluong", soluong));
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng nhập số lượng là số.");
+                    return;
+                }
+            }
+
+            if (cbNXB.Checked)
+            {
+                    sql += " AND [Nhà xuất bản] = @NXB";
+                    parameters.Add(new SqlParameter("@NXB", cbbNXB.Text));
+            }
+
+            DataTable dataTable = new DataTable();
+            dataTable = dBHelper.ExecuteQuery(sql, parameters.ToArray());
+            dBHelper.FillDataGridView(dgdSach,dataTable);
         }
     }
 }
