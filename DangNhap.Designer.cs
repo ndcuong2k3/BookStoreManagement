@@ -55,7 +55,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(433, 104);
+            label1.Location = new Point(431, 105);
             label1.Name = "label1";
             label1.Size = new Size(115, 28);
             label1.TabIndex = 1;
@@ -64,7 +64,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(334, 158);
+            label2.Location = new Point(325, 158);
             label2.Name = "label2";
             label2.Size = new Size(71, 20);
             label2.TabIndex = 2;
@@ -73,7 +73,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(334, 192);
+            label3.Location = new Point(325, 192);
             label3.Name = "label3";
             label3.Size = new Size(70, 20);
             label3.TabIndex = 3;
@@ -81,23 +81,23 @@
             // 
             // txtTaikhoan
             // 
-            txtTaikhoan.Location = new Point(412, 151);
+            txtTaikhoan.Location = new Point(403, 151);
             txtTaikhoan.Name = "txtTaikhoan";
             txtTaikhoan.Size = new Size(202, 27);
             txtTaikhoan.TabIndex = 4;
             // 
             // txtMatkhau
             // 
-            txtMatkhau.Location = new Point(412, 189);
+            txtMatkhau.Location = new Point(403, 189);
             txtMatkhau.Name = "txtMatkhau";
             txtMatkhau.Size = new Size(202, 27);
             txtMatkhau.TabIndex = 5;
             // 
             // btnDangNhap
             // 
-            btnDangNhap.Location = new Point(433, 251);
+            btnDangNhap.Location = new Point(366, 240);
             btnDangNhap.Name = "btnDangNhap";
-            btnDangNhap.Size = new Size(94, 29);
+            btnDangNhap.Size = new Size(250, 35);
             btnDangNhap.TabIndex = 6;
             btnDangNhap.Text = "Đăng nhập";
             btnDangNhap.UseVisualStyleBackColor = true;
@@ -125,7 +125,7 @@
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.icons8_hide_password_30;
-            pictureBox2.Location = new Point(620, 186);
+            pictureBox2.Location = new Point(611, 186);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(30, 30);
             pictureBox2.TabIndex = 9;
@@ -147,6 +147,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
+            ForeColor = Color.Black;
             Name = "DangNhap";
             Text = "DangNhap";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
