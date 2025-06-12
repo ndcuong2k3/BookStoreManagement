@@ -356,7 +356,7 @@
             button6.Name = "button6";
             button6.Size = new Size(143, 36);
             button6.TabIndex = 23;
-            button6.Text = "Về Trang chủ";
+            button6.Text = "Về trang chủ";
             button6.UseVisualStyleBackColor = true;
             // 
             // btnLuu
@@ -394,7 +394,7 @@
             Controls.Add(dgdSach);
             Controls.Add(groupBox1);
             Name = "Sach";
-            Text = "Sach";
+            Text = "Quản lý sách";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgdSach).EndInit();
