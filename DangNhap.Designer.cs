@@ -81,7 +81,7 @@
             // 
             // txtTaikhoan
             // 
-            txtTaikhoan.Location = new Point(403, 151);
+            txtTaikhoan.Location = new Point(402, 151);
             txtTaikhoan.Name = "txtTaikhoan";
             txtTaikhoan.Size = new Size(202, 27);
             txtTaikhoan.TabIndex = 4;
@@ -124,8 +124,9 @@
             // 
             // pictureBox2
             // 
+            pictureBox2.BackColor = Color.White;
             pictureBox2.Image = Properties.Resources.icons8_hide_password_30;
-            pictureBox2.Location = new Point(611, 186);
+            pictureBox2.Location = new Point(615, 186);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(30, 30);
             pictureBox2.TabIndex = 9;
